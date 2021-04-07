@@ -1,0 +1,6 @@
+Flask
+Flask-Bootstrap
+keras==2.4.3
+tensorflow==2.2.0
+pandas==1.1.5
+werkzeug
