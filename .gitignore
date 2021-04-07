@@ -1,0 +1,15 @@
+__pycache__/*
+env
+.vscode/
+src/*.pyc
+src/*.log
+src/__pycache__
+src/config*
+data/
+config.py
+models/
+img/
+src/static/uploads/
+.DS_Store
+src/.DS_Store
+model/
