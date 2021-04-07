@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block page_content %}
+
+    <div class="jumbotron">
+
+        <h4 class="lead"><strong>Animal classification powered by AI:</strong>
+            we combined pictures of animals with concepts of deep learning to create software
+            that classifies animals.</h4>
+
+        <hr class="my-4">
+
+        <h4 class="lead">
+            <form action="{{ url_for('process') }}" id="process">
+                <textarea class="form-control" id="text" name="text"></textarea>
+                <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+            </form>
+        <centre id="rst">Result: <span id="res"></span></centre>
+        </h4>
+
+    </div>
+
+    <script>
+        // Attach a submit handler to the form
+        $( "#process" ).submit(function( event ) {
+         
+          // Stop form from submitting normally
+          event.preventDefault();
+         
+          // Get some values from elements on the page:
+          var $form = $( this ),
+            term = $('textarea#text').val();
+            url = $form.attr( "action" );
+            console.log(term);
+            console.log(url);
+            
+            $.ajax({
+                type: "POST",
+                cache: false,
+                data:{text:term},
+                url: url,
+                dataType: "json",
+                success: function(data) { 
+                    console.log(data);
+                    $("#res").empty().append(data.label);                
+                },
+                error: function(jqXHR) {
+                    alert("error: " + jqXHR.status);
+                    console.log(jqXHR);
+                }
+            })
+
+        });
+        </script>
+
+{% endblock %}

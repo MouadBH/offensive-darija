@@ -1,0 +1,68 @@
+{% extends "bootstrap/base.html" %}
+
+{% block head %}
+    {{super()}}
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+{% endblock %}
+
+{% block title %}
+    Arabic Offensive Language Detection
+{% endblock %}
+
+{% block navbar %}
+    <div class="navbar navbar-inverse navbar-static-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="navbar-brand">
+                    <a href="/">
+                        <img class="card-img-top img-responsive" style="height:250%;"
+                             src="{{ url_for('static', filename='logo_white.png') }}">
+                    </a>
+                </div>
+            </div>
+            <span class="navbar-text navbar-right navbar-brand">
+                Arabic Offensive Language Detection
+            </span>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+
+    <div id="block_content" class="container">
+
+        {% for message in get_flashed_messages() %}
+        <div class="alert alert-info alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            {{ message }}
+        </div>
+        {% endfor %}
+
+        {% block page_content %}
+        {% endblock %}
+
+        <br>
+
+        {% block footer %}
+            <footer>&copy; 2021 Moad Boulahdoud</footer> <br>
+        {% endblock footer %}
+
+    </div>
+
+    <div>
+        <img id="loading_gif"
+             src="{{ url_for('static', filename = 'loading.gif') }}"
+             style="display: none;height:100%;width:100%;" />
+    </div>
+
+{% endblock %}
