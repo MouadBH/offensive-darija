@@ -1,0 +1,15 @@
+web:
+  restart: always
+  build: ./
+  container_name: web
+  working_dir: /web
+  # expose:
+  #   - 80
+  ports:
+    - 5000:5000
+  volumes:
+      - "./:/web"
+  command: "python /web/app.py"
+  # command: /usr/local/bin/gunicorn -w 2 -b :8000 app:app
+  # env_file:
+  #   - ../config/.env
